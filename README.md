@@ -2,9 +2,14 @@
 
 Abstract
 
-Built a fault tolerant expense mamagement system using Python Flask.
+Expense Management System (2016) - A fault-tolerant employee expense management system using Python
+Flask, implemented through REST. Each server was wrapped into a Docker container, to remove dependencies,
+and were together connected to a single MySQL RDBMS using Flask-SQLAlchemy. A Router was implemented
+through Python TCP Proxy Server for dynamic load-balancing, tracking state of each Docker instance through
+heartbeat. Redis Database maintained details of each instance for dynamic replica registration.
 
-Prerequisites
+
+Description:
 
 Base URL: http://localhost:5000
 POST /v1/expenses
