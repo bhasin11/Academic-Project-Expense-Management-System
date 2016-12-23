@@ -1,6 +1,6 @@
 # Fault Tolerant Web Application
 
-Abstract
+Abstract:
 
 Expense Management System (2016) - A fault-tolerant employee expense management system using Python
 Flask, implemented through REST. Each server was wrapped into a Docker container, to remove dependencies,
@@ -73,6 +73,10 @@ DELETE /v1/expenses/{expense_id}
 Response Header
 
 204 No Content
+
+
+
+
 Data Persistence
 
 Database:
@@ -82,19 +86,22 @@ Docker Container Persistence
 
 Docker provides Data containers for stateful applications like Database. Mounted a dedicated volume for MySQL so that you can easily manage the persistence data file generated from MySQL.
 
+
+
+
+
 Achieved the following:
 
-Dynamic Replica Registration
-Dynamic Load Balancing
-Failure Detection
+Dynamic Replica Registration:
 
-
-Requirements
-
-Dynamic Replica Registration
 A component called Router is implemented based on this tiny Python TCP proxy server.
-
 As part of the node registration, whenever a new expense management application's Docker instance is launched, it will auto-register to the own instance to the router.
 
-Failure Detection (via CircutBreaker)
+Dynamic Load Balancing:
+
+The input requests to the router are distributed equally among the running instaces through Round-Robin Algorithm.
+
+
+Failure Detection (via CircutBreaker):
+
 Whenever a node reaches its CircuitBreaker's error count, the router will deregister the failed node from the routing table in Redis and forward the same request to the next available node.
